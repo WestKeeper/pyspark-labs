@@ -1,0 +1,20 @@
+# This is a docker config presented as a list of key-value pairs
+# This file is constructed using the sample linux file /etc/default/grub
+
+# All the new parameters should be added as follows:
+# parameter_name=parameter_value - without any quotes or other special symbols
+
+user_name=SemeniutaAV
+
+# Additional folder to mount into container
+host_dir_to_mount=/mnt/mlrnd
+container_dir_to_mount=/mnt/mlrnd
+
+working_dir=/usr/src/app
+timezone=Asia/Novosibirsk
+
+image_name=semeniutaav/pyspark-labs:latest
+dockerfile_path=Dockerfile
+container_name=pyspark-labs
+container_hostname=docker
+jupyter_port=22801
