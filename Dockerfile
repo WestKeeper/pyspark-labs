@@ -5,6 +5,9 @@ FROM ${SOURCE_IMAGE_NAME} as base
 
 LABEL maintainer "SemeniutaAV"
 
+# To get rid of permission error while installation
+USER root
+
 # Install third party requirements
 ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update && apt-get install -y \
