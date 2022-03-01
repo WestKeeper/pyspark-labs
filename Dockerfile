@@ -55,9 +55,9 @@ RUN apt-get update && apt-get install -y \
 RUN ${PIP} install --no-cache-dir --upgrade pip setuptools wheel pipdeptree
 
 # Install development required pip packages
-COPY ./requirements_dev.txt ./
-RUN ${PIP} install --no-cache-dir -r requirements_dev.txt \
-    && rm requirements_dev.txt
+COPY ./requirements.txt ./
+RUN ${PIP} install --no-cache-dir -r requirements.txt \
+    && rm requirements.txt
 
 # Specify working dir for a project
 ARG WORKING_DIR=/usr/src/app
@@ -69,4 +69,3 @@ RUN echo 'PS1="SemeniutaAV>:\w\$ "' >> /etc/bash.bashrc
 # Setting up user environment
 USER ${USER_NAME}
 ENV LANG C.UTF-8
-RUN echo "alias python=$(which ${PYTHON})" >> $HOME/.bashrc
