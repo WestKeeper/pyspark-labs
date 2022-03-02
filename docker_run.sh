@@ -49,7 +49,6 @@ else
 fi
 
 WORKING_DIR_PARAMETER_NAME=working_dir
-HOST_DIR_TO_MOUNT_PARAMETER_NAME=host_dir_to_mount
 CONTAINER_DIR_TO_MOUNT_PARAMETER_NAME=CONTAINER_DIR_TO_MOUNT_PARAMETER_NAME
 
 CONTAINER_NAME_PARAMETER_NAME=container_name
@@ -70,11 +69,7 @@ fi
 
 docker_run_cmd="docker run "
 docker_run_cmd+="-u $(id -u):$(id -g) "
-
 docker_run_cmd+="--mount type=bind,source=$(pwd),destination=${config[$WORKING_DIR_PARAMETER_NAME]} "
-if [ $DOCKER_MOUNT -eq 1 ]; then
-  docker_run_cmd+="--mount type=bind,source=${config[$HOST_DIR_TO_MOUNT_PARAMETER_NAME]},destination=${config[$CONTAINER_DIR_TO_MOUNT_PARAMETER_NAME]} "
-fi
 docker_run_cmd+="-it "
 docker_run_cmd+="--rm "
 docker_run_cmd+="--name ${config[$CONTAINER_NAME_PARAMETER_NAME]}-${USER} "
