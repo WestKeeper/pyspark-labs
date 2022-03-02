@@ -56,6 +56,8 @@ CONTAINER_NAME_PARAMETER_NAME=container_name
 CONTAINER_HOSTNAME_PARAMETER_NAME=container_hostname
 IMAGE_NAME_PARAMETER_NAME=image_name
 
+JUPYTER_PORT_PARAMETER_NAME=jupyter_port
+
 FINAL_DOCKER_IMAGE_NAME="${config[$IMAGE_NAME_PARAMETER_NAME]}-${USER}"
 if [ "$DOCKER_IMAGE_NAME" != "" ]; then
   FINAL_DOCKER_IMAGE_NAME="$DOCKER_IMAGE_NAME"
@@ -79,8 +81,6 @@ docker_run_cmd+="--name ${config[$CONTAINER_NAME_PARAMETER_NAME]}-${USER} "
 docker_run_cmd+="-h ${config[$CONTAINER_HOSTNAME_PARAMETER_NAME]} "
 docker_run_cmd+="-p $FINAL_JUPYTER_PORT:$FINAL_JUPYTER_PORT "
 docker_run_cmd+="$FINAL_DOCKER_IMAGE_NAME "
-# Change it bellow
-docker_run_cmd+="/bin/bash -c \"cd notebooks && jupyter notebook --no-browser --ip=0.0.0.0 --port=${FINAL_JUPYTER_PORT}\""
 
 echo "$docker_run_cmd"
 eval "$docker_run_cmd"

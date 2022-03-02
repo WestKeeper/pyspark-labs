@@ -17,4 +17,4 @@ image_name=semeniutaav/pyspark-labs:latest
 dockerfile_path=Dockerfile
 container_name=pyspark-labs
 container_hostname=docker
-jupyter_port=22801
+jupyter_port=8888

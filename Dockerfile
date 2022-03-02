@@ -22,16 +22,6 @@ RUN apt-get update && apt-get install -y \
     vim \
     sudo
 
-# Create a user to map from docker host
-ARG USER_ID
-ARG GROUP_ID
-ARG USER_NAME
-RUN if id ${USER_NAME} >/dev/null 2>&1; then userdel -f -r ${USER_NAME}; fi \
-    && if getent group ${USER_NAME}; then groupdel ${USER_NAME}; fi \
-    && groupadd -g ${GROUP_ID} ${USER_NAME} \
-    && useradd -l -u ${USER_ID} -g ${GROUP_ID} -s /bin/bash -m ${USER_NAME} \
-    && usermod -aG sudo ${USER_NAME}
-
 # Enable sudo without password
 RUN echo ${USER_NAME}'     ALL=(ALL) NOPASSWD:ALL' >> /etc/sudoers
 
